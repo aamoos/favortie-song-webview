@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
         webView.webViewClient = WebViewClient() // 웹뷰 내에서 링크를 클릭하면 새 창이 아닌 웹뷰 내에서 열리도록 설정
         webView.settings.javaScriptEnabled = true // 자바스크립트 사용을 허용
 
-        webView.loadUrl("https://www.naver.com") // 원하는 URL을 로드
+        webView.loadUrl("https://favorite-song.store") // 원하는 URL을 로드
     }
 
     override fun onBackPressed() {
