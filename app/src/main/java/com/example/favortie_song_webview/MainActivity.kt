@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
         webView.settings.javaScriptEnabled = true // 자바스크립트 사용을 허용
         webView.settings.useWideViewPort = true
         webView.settings.domStorageEnabled = true
+        webView.getSettings().setUserAgentString("Chrome/56.0.0.0 Mobile");     //oauth2 403 에러 대응
 
         webView.loadUrl("https://favorite-song.store/") // 원하는 URL을 로드
     }
