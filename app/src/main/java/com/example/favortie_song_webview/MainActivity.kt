@@ -1,18 +1,12 @@
 package com.example.favortie_song_webview
 
-import android.os.Bundle
+ import android.os.Bundle
+import android.webkit.WebResourceError
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.favortie_song_webview.ui.theme.FavortiesongwebviewTheme
 
 class MainActivity : ComponentActivity() {
 
@@ -23,8 +17,15 @@ class MainActivity : ComponentActivity() {
         setContentView(R.layout.activity_main)
 
         webView = findViewById(R.id.webView)
-        webView.webViewClient = WebViewClient() // 웹뷰 내에서 링크를 클릭하면 새 창이 아닌 웹뷰 내에서 열리도록 설정
+        webView.webViewClient = object : WebViewClient() {
+            override fun onReceivedError(view: WebView?, request: WebResourceRequest?, error: WebResourceError?) {
+                super.onReceivedError(view, request, error)
+                Toast.makeText(this@MainActivity, "Failed to load webpage", Toast.LENGTH_SHORT).show()
+            }
+        }
+
         webView.settings.javaScriptEnabled = true // 자바스크립트 사용을 허용
+        webView.settings.useWideViewPort = true
 
         webView.loadUrl("https://favorite-song.store") // 원하는 URL을 로드
     }
